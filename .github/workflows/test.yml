@@ -1,0 +1,22 @@
+on:
+  push:
+    branches: main
+
+name: test
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.3'
+
+      - name: show ld version
+        run: C:/rtools43/x86_64-w64-mingw32.static.posix/bin/ld --version
+
+      - name: upgrade Rtools
+        run: choco upgrade rtools
+        
+      - name: show ld version again
+        run: C:/rtools43/x86_64-w64-mingw32.static.posix/bin/ld --version
